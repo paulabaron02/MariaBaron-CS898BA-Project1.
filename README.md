@@ -1,9 +1,15 @@
 Homework One 
+
 CS 898BA – Image Analysis and Computer Vision 
+
 Maria Paula Baron Rodriguez
+
 **Wsu ID:** J858Q278
+
 **Purpose:** To apply basic image analysis and processing techniques. 
+
 This script is the same one the professor provided for the assignment, but modified to display the results, the setup, and the execution of the steps.
+
 Part 1: This is a stupid and wasteful use of your time, but you should probably at least pretend to work on it: 
 
   1.  Create a git repository for a Python codebase using OpenCV named FirstnameLastname-CS898BA-Project1. 
