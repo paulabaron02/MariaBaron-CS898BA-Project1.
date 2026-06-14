@@ -17,21 +17,66 @@ This script is the same one the professor provided for the assignment, but modif
 - Numpy
 - Scipy.stats
 
-**2.1.**  Image statistics 
+**2.1.**  Image statistics.
+
 In this stage, we extract the **blue, green, and red channels** from the image, calculate the requested statistics for each channel (including minimum, maximum, mean, median, skewness, range, standard deviation, variance, and mode), visualize the results for each channel, organize the calculated data into a Pandas DataFrame, and use Matplotlib to generate a plot displaying a heatmap of the channel intensity alongside a clearly formatted data table.
 
 <img width="640" height="480" alt="Statics_Channels" src="https://github.com/user-attachments/assets/36be6a18-baa5-4b6a-860d-02a5105ed8b2" />
 
 
-  2.  Convert and save the image to greyscale, binary, and different color spaces (HSV, CIELAB, and HLS).
-  3.  On the HSV converted image, normalize the lighting by performing histogram equalization across the V (value) channel.
-  4.  Convert the normalized image back to RGB and save it.
-  5.  You should now have 7 images.
-  6.  Perform random affine transformations on each image (you should perform 14 total transformations - 2 for each image). Affine transformations can be translation, rotation, scaling, or shear as long as each is unique in either transformation type or transformation value (rotate 90 degrees vs rotate 186 degrees). No two images should be transformed in the exact same way. Save each of those images to new files.
-  7.  You should now have 21 images.
-  8.  Apply a Gaussian blur to each image using the levels of sigma: 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5. Discuss how the level of sigma changes the image. Save each of those images to new files.
-  9.  You should now have 168 images.
+  **2.2.** Greyscale, binary, and different color spaces (HSV, CIELAB, and HLS).
+  
+For this part of the course, the code transforms the image's color spaces. First, it converts the image to grayscale and applies a binary threshold; this turns almost the entire scene black—since the original photograph is very dark—while preserving only the bright lights of the houses.
 
+  **2.3.**  Histogram equalization across the V (value) channel.
+  
+Next, the lighting is normalized by isolating the V (brightness) channel from the HSV color space and applying histogram equalization to brighten dark areas and reveal hidden details in the image.
+
+  **2.4.**  Convert the normalized image back to RGB and save it.
+  
+  The result of the imagen in RGB is clearly more visible 
+  
+  <img width="640" height="480" alt="HSV_Normalized_RGB" src="https://github.com/user-attachments/assets/5c8e00df-60f1-469b-9ec8-159279de1241" />
+
+
+  **2.5.**  The Results 7 images.
+   The results of the previous parts are in the folder called results and they correpond to the files named 
+   - Binary
+   - CIELAB
+   - GreyScale
+   - HLS
+   - HSV
+   - HSV_Normalized
+   - HSV_Normalized_RGB
+     
+**2.6.**  Perform random affine transformations on each image (you should perform 14 total transformations - 2 for each image). Affine transformations can be translation, rotation, scaling, or shear as long as each is unique ineither transformation type or transformation value (rotate 90 degrees vs rotate 186 degrees). No two images should be transformed in the exact same way. Save each of those images to new files.
+
+* Rotation: Rotates the image by a random angle (between 15 and 180 degrees) while slightly changing its size (applying a slight zoom-in or zoom-out effect).
+* Translation: Shifts or moves the image sideways, up, or down using random coordinates. Any empty spaces resulting from the movement are filled with black borders.
+
+ **2.8.**  You should now have 21 images.
+  The results of the previous parts are in the folder called results and they correpond to the files named 
+   - Original_Rotation, Original_Traslation
+   - Binary_Rotation, Binary_Traslation
+   - CIELAB_Rotation, CIELAB_Traslation
+   - GreyScale_Rotation, GreyScale_Traslation
+   - HLS_Rotation, HLS_Traslation
+   - HSV_Rotation, HSV_Traslation
+   - HSV_Normalized_RGB_Rotation, HSV_Normalized_RGB_Traslation
+  
+  **2.9.**  Apply a Gaussian blur to each image using the levels of sigma: 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5. Discuss how the level of sigma changes the image. Save each of those images to new files.
+     
+In this step, we take all the images saved in the results folder (21 images in total) and apply a Gaussian blur filter using seven different intensity levels, defined by the Sigma ($\sigma$) value. The program iterates through each image in the folder and, for each Sigma level, generates a new blurred version, automatically saving it with the Sigma value included in the filename. It is evident that at lower Sigma values, the image retains most of its fine details and sharp edges, whereas as the value increases, small details are completely lost, and the alien's silhouette becomes soft and diffuse.
+
+  **2.10.**  You should now have 168 images.
+  The results of the previous parts are in the folder called results and they correpond to the files named 
+   - Original_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
+   - Binary_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
+   - CIELAB_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
+   - GreyScale_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
+   - HLS_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
+   - HSV_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
+   - HSV_Normalized_RGB_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
 ---
 
 Part 3: You decide that detecting the edges of the unknown figure would be useful, so you do the following: 
