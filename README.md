@@ -10,37 +10,19 @@ Maria Paula Baron Rodriguez
 
 This script is the same one the professor provided for the assignment, but modified to display the results, the setup, and the execution of the steps.
 
-Part 1: This is a stupid and wasteful use of your time, but you should probably at least pretend to work on it: 
+**Used Libraries** 
+- Cv2
+- Matplotlib.pyplot
+- Pandas
+- Numpy
+- Scipy.stats
 
-  1.  Create a git repository for a Python codebase using OpenCV named FirstnameLastname-CS898BA-Project1. 
+**2.1.**  Image statistics 
+In this stage, we extract the **blue, green, and red channels** from the image, calculate the requested statistics for each channel (including minimum, maximum, mean, median, skewness, range, standard deviation, variance, and mode), visualize the results for each channel, organize the calculated data into a Pandas DataFrame, and use Matplotlib to generate a plot displaying a heatmap of the channel intensity alongside a clearly formatted data table.
 
-
-  2.  Create an initial commit with a “Hello World!” Script. 
-
-
-  3.  Keep track of all AI usage in a file named AI_Log.md.
-  
-  
-    i.  Each entry should include the full prompt, the date and time the prompt was issued, the AI tool used to enter the prompt, a synopsis of the result, and any relevant design or code changes affected by the result. 
-
-
-Here is a very silly example: 
-
-| Date and Time | Prompt | Tool | Response Synopsis | Change |
-| --- | --- | --- | --- | --- |
-| 05/05/2026 12:00 AM | When is Cinco De Mayo? | ChatGPT | Today | Changed dinner plans. |
-| 05/10/2026 3:15 PM | I totally forgot to buy my mom a gift and she is coming over!!! Please make an image of a handwritten letter telling her how much I love her. | Gemini | Happy Mother’s Day letter and scolding me for being terrible/ungrateful. | Set reminders of Mother’s Day and felt deep shame. |
-
-  4.  Perform incremental commits with updated code for each question with a quality commit message. 
+<img width="640" height="480" alt="Statics_Channels" src="https://github.com/user-attachments/assets/36be6a18-baa5-4b6a-860d-02a5105ed8b2" />
 
 
-  5.  Ensure you include a comprehensive ReadMe file with code explanations, setup and execution steps, and your results, along with any relevant discussion. 
-
----
-
-Part 2: You know you should at least do basic analysis to get started, so you perform the following on the image: 
-
-  1.  Find and print basic image statistics of the original image for each individual channel (min, max, average, median, mode, skew, range, standard deviation, variance)
   2.  Convert and save the image to greyscale, binary, and different color spaces (HSV, CIELAB, and HLS).
   3.  On the HSV converted image, normalize the lighting by performing histogram equalization across the V (value) channel.
   4.  Convert the normalized image back to RGB and save it.
