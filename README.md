@@ -17,13 +17,17 @@ This script is the same one the professor provided for the assignment, but modif
 - Numpy
 - Scipy.stats
 
-**2.1.**  Image statistics 
+**2.1.**  Image statistics.
+
 In this stage, we extract the **blue, green, and red channels** from the image, calculate the requested statistics for each channel (including minimum, maximum, mean, median, skewness, range, standard deviation, variance, and mode), visualize the results for each channel, organize the calculated data into a Pandas DataFrame, and use Matplotlib to generate a plot displaying a heatmap of the channel intensity alongside a clearly formatted data table.
 
 <img width="640" height="480" alt="Statics_Channels" src="https://github.com/user-attachments/assets/36be6a18-baa5-4b6a-860d-02a5105ed8b2" />
 
 
-  2.  Convert and save the image to greyscale, binary, and different color spaces (HSV, CIELAB, and HLS).
+  **2.2.** Greyscale, binary, and different color spaces (HSV, CIELAB, and HLS).
+  
+For this part of the course, the code transforms the image's color spaces. First, it converts the image to grayscale and applies a binary threshold; since the original photograph is very dark, this turns almost the entire scene black, preserving only the bright lights of the houses. Next, it aims to normalize the lighting by isolating the V (brightness) channel from the HSV color space and applying histogram equalization to brighten dark areas and reveal hidden details of the alien on the lawn.
+
   3.  On the HSV converted image, normalize the lighting by performing histogram equalization across the V (value) channel.
   4.  Convert the normalized image back to RGB and save it.
   5.  You should now have 7 images.
