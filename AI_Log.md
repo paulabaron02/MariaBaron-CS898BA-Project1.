@@ -2,5 +2,4 @@
 |---|---|---|---|---|
 | 06/12/2026 11:00 PM | Help me understand Part 1 of my CS898BA Homework One assignment. | ChatGPT | Explained that Part 1 requires creating a GitHub repository, an AI usage log, incremental commits, and a README file. | Created the initial project plan and file structure. |
 | 06/13/2026 11:10 PM | Explain how to upload to Git Hub a file in Spyder. | ChatGPT | Provided step-by-step instructions for creating main.py in Spyder and committing it through GitHub Desktop. | Created file in spider and commit in Github. |
-Date and Time	Prompt	Tool	Response Synopsis	Change
 | 06/13/2026 3:55 PM |What Python libraries can I use to display an image and a table in the same plot | Gemini |	Recommended using Matplotlib forcreating subplot, Pandas for tabular data, Explained that subplots can be used to place the image and table in the same plot. |	Selected Matplotlib and Pandas as the primary libraries for displaying processed images and image statistics together in a single figure for project reporting and visualization.
