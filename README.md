@@ -81,45 +81,47 @@ In this step, we take all the images saved in the results folder (21 images in t
    - HSV_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
    - HSV_Normalized_RGB_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
 ---
+**3.1.** Randomly4 equally sized subsets of the images.
 
-Part 3: You decide that detecting the edges of the unknown figure would be useful, so you do the following: 
+In this step, all images from the "results" folder are taken, shuffled completely at random, and divided into four equal-sized subsets; the first group is then assigned to `My_Subset` for later use.
 
-  1.  Randomly create 4 equally sized subsets of the images from part 1.
-
-    Each subset should have 42 images.
-
-  2.  Choose a subset to use in the remaining steps.
-
-  3.  You should now have 42 images.
-    
-  4.  Perform these edge detection techniques on that subset:
-
+**3.2.**  Choose a subset to use in the remaining steps.
+ 
+ The variable called My_subset
+ 
+**3.4.**  Perform these edge detection techniques on that subset:
     a.  Sobel
     b.  Laplacian
     c.  Canny
     d.  Prewitt
-
-  5.  Discuss the pros and cons of each edge detection technique and perform an analysis of which of these techniques works best for this image set.
-
-    Reminder – Canny may be the most used and applied, but it may not be the best in your case. Make sure your analysis fits your results.
     
-  6.  Save each image before and after adding edges with each technique.
-     
-  7.  You should now have 210 images.
+Since there are already many images in the results folder, we create a new subfolder named `Edge_Detection` and apply the four techniques required by the assignment; all processed versions are automatically saved in the new folder, named according to the respective technique.
+
+**3.5** Discuss the pros and cons of each edge detection technique and perform an analysis of which of these techniques works best for this image set.
+
+I believe it is difficult to generalize across all images; however:
+
+- Sobel: This one successfully detected the main outlines of some figures—primarily those with more colors. However, the resulting lines are quite thick and include some texture, which can be helpful depending on the image.
+
+- Laplacian: This method detected intensity changes, but the resulting image showed very faint edge responses. Due to the original image's low lighting, it was difficult to distinguish many important elements. This method provided the least effective visual separation between the figure and the background.
+
+- Canny: Performed the best, producing the cleanest and most well-defined lines. The silhouettes of the alien and the houses are clearly visible, and—best of all—it eliminated almost all the background "noise" and dark spots. As a result, the output is very easy to interpret and highlights only the most important features of the image.
+
+- Prewitt: The results very similar to Sobel. It did manage to outline the alien and the houses in some of the more colorful images, but the lines appear blurrier, and more background "noise" or spotting remained. While it works well, the result is nowhere near as sharp or defined as that of the Canny method.
+
+I believe that applying these methods after already using CIELAB complicates image visualization. However, it's clear that the descriptions I've given don't generalize, because in my opinion, Laplacian works better for CIELAB; even though it's blurry, I can see more.
+    
+**3.7**  You should now have 210 images.
+
+this images These images are in the edge detection folder created earlier.
   
-  8.  Create 42, 5-image plots of the input image (from the start of part 3) next to the edge-detected images and output 6 random plots to add to the readme. Include information on what processing techniques were used on the images. Your plots should look similar to this:
+**3.8**  5-image plots of the input image 
 
-<img width="1425" height="1483" alt="image" src="https://github.com/user-attachments/assets/8059bb6e-c001-4bc0-94d0-3f9ae71e8844" />
+There is another folder called "plot" where you can get a better view.
 
----
-
-Part 4: You officially get bored with this and go back to your actual job…..after watching a few dozen YouTube videos. 
-
-
-**Submit your github repository link on BB.**
-
----
-  
-**[HOMEWORK ONE IMAGE DOWNLOAD](https://wichitaedu-my.sharepoint.com/:i:/g/personal/u577g584_wichita_edu/IQDhM0PY2yapTI1qxl_aPAHKAVPzCgBXEmIK3u-yQR3VP2I?e=NULzW5)**
-
-<img width="1017" height="555" alt="image for homework 1" src="https://github.com/user-attachments/assets/1920f37b-f2b0-4816-88d0-d3e339a8df3d" />
+<img width="990" height="896" alt="Plot_033" src="https://github.com/user-attachments/assets/de8f953b-3583-423d-925a-79ee70109962" />
+<img width="990" height="896" alt="Plot_029" src="https://github.com/user-attachments/assets/7daeb956-a23c-4107-b4d0-90d1d6cc64f2" />
+<img width="990" height="896" alt="Plot_020 - Copy" src="https://github.com/user-attachments/assets/94118047-87ca-42fd-89cd-89ca380ca8ad" />
+<img width="990" height="895" alt="Plot_013 - Copy" src="https://github.com/user-attachments/assets/8c1f41ce-f09b-40d9-86c1-9a2e8c617794" />
+<img width="990" height="896" alt="Plot_004 - Copy" src="https://github.com/user-attachments/assets/a6370115-70b3-4783-9437-d8174bc26a2f" />
+<img width="990" height="896" alt="Plot_058" src="https://github.com/user-attachments/assets/5bf39f0a-8c56-49a4-a8d1-2ce3986502b3" />
