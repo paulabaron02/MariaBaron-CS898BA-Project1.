@@ -40,6 +40,7 @@ Next, the lighting is normalized by isolating the V (brightness) channel from th
 
 
   **2.5.**  The Results 7 images.
+  
    The results of the previous parts are in the folder called results and they correpond to the files named 
    - Binary
    - CIELAB
@@ -55,6 +56,7 @@ Next, the lighting is normalized by isolating the V (brightness) channel from th
 * Translation: Shifts or moves the image sideways, up, or down using random coordinates. Any empty spaces resulting from the movement are filled with black borders.
 
  **2.8.**  You should now have 21 images.
+ 
   The results of the previous parts are in the folder called results and they correpond to the files named 
    - Original_Rotation, Original_Traslation
    - Binary_Rotation, Binary_Traslation
@@ -69,6 +71,7 @@ Next, the lighting is normalized by isolating the V (brightness) channel from th
 In this step, we take all the images saved in the results folder (21 images in total) and apply a Gaussian blur filter using seven different intensity levels, defined by the Sigma ($\sigma$) value. The program iterates through each image in the folder and, for each Sigma level, generates a new blurred version, automatically saving it with the Sigma value included in the filename. It is evident that at lower Sigma values, the image retains most of its fine details and sharp edges, whereas as the value increases, small details are completely lost, and the alien's silhouette becomes soft and diffuse.
 
   **2.10.**  You should now have 168 images.
+  
   The results of the previous parts are in the folder called results and they correpond to the files named 
    - Original_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
    - Binary_GaussianBlur_Sigma_(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5.), Seven Version of this picture 
