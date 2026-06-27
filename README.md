@@ -10,12 +10,6 @@ Maria Paula Baron Rodriguez
 
 This script is the same one the professor provided for the assignment, but modified to display the results, the setup, and the execution of the steps.
 
-**Situation:** Your supervisor’s supervisor is back. After reviewing your edge detection plots from Homework One, he is convinced that the "alien" has a distinct torso and head structure. He wants you to isolate the entity from the background completely and mutters something about "extracting the exact pixel area for a bio-mass calculation" before rushing out to a meeting. 
-
-Since you already have a repository and a solid pipeline, you decide to waste more time by using image segmentation to isolate the figure.
-
----
-
 ## Part 1: Repository Maintenance & Logistics
 
 1. **Branching:** Do not overwrite your Homework One code. Create a new branch in your existing repository named `Feature-Segmentation`.
@@ -24,16 +18,13 @@ Since you already have a repository and a solid pipeline, you decide to waste mo
 
 ---
 
-## Part 2: Image Preprocessing & Multi-Channel Normalization
+## Part 1.1: Image Preprocessing & Multi-Channel Normalization
 
-Before applying segmentation algorithms, you must standardize the illumination across the entire color space to handle the challenging lighting conditions of the doorbell camera feed:
+For the first part of the second assignment, we use the same image as in the previous task; the code performs channel-based color normalization to enhance the contrast of the alien image. 
 
-1. **Multi-Channel Color Normalization:**
-   * Load the original image from Homework One.
-   * Split the image into its three color channels (e.g., R, G, and B or via the V channel in HSV / L channel in LAB).
-   * Apply Histogram Equalization independently to all three channels to normalize illumination and maximize contrast across the entire color spectrum.
-   * Merge the channels back together to create a fully normalized color image.
-   * Save this normalized color image; it will serve as the primary input for all subsequent segmentation tasks.
+First, the image is separated into its three independent RGB channels using the `cv2` library's `split` function, with each channel saved individually. Next, histogram equalization is applied to each channel separately using `cv2.equalizeHist`, thereby boosting the contrast and illumination of each color component. 
+
+Finally, the three enhanced channels are recombined into a single, fully normalized color image, which is saved as the master file for subsequent project stages. However, in the book *Mastering OpenCV 4 with Python* by Alberto Fernández Villán, the authors note that "Equalizing the three channels is not a good approach because the color shade changes dramatically." Instead, they propose a better method: converting the BGR image to a color space that includes a luminance or intensity channel (such as YUV, Lab, HSV, or HSL) and then performing equalization on that channel.
 
 ---
 
