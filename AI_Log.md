@@ -1,3 +1,3 @@
 | Date and Time | Prompt | Tool | Response Synopsis | Change |
 |---|---|---|---|---|
-| 06/12/2026 11:00 PM | Help me understand Part 1 of my CS898BA Homework One assignment. | ChatGPT | Explained that Part 1 requires creating a GitHub repository, an AI usage log, incremental commits, and a README file. | Created the initial project plan and file structure. |
+| 06/26/2026 11:45 PM | Help me troubleshoot the "ModuleNotFoundError: No module named 'cv2'" error in Spyder and explain how to verify the Python environment being used. | ChatGPT | Explained that the error was caused by Spyder using a Python environment without OpenCV installed. Provided steps to identify the active Python interpreter, verify the OpenCV installation, install the package if necessary, and confirm the installation by importing cv2 and checking its version. | Resolved the OpenCV import issue and restored the image processing environment for Homework Two. |
