@@ -18,7 +18,7 @@ This script is the same one the professor provided for the assignment, but modif
 
 ---
 
-## Part 1.1: Image Preprocessing & Multi-Channel Normalization
+## Part 2: Image Preprocessing & Multi-Channel Normalization
 
 For the first part of the second assignment, we use the same image as in the previous task; the code performs channel-based color normalization to enhance the contrast of the alien image. 
 
@@ -30,15 +30,7 @@ Finally, the three enhanced channels are recombined into a single, fully normali
 
 ## Part 3: Threshold-Based Segmentation
 
-Using the normalized color image produced in Part 2, implement the following baseline techniques using OpenCV:
-
-1. **Otsu’s Global Thresholding:**
-   * Convert your normalized color image to grayscale.
-   * Apply Otsu's automatic thresholding to separate the foreground object from the background.
-2. **Adaptive Thresholding:**
-   * Apply adaptive thresholding (Gaussian window) to the grayscale version of your normalized image to handle local illumination variations.
-
-*Save the resulting binary masks and the segmented foreground extractions for both methods.*
+For this part of the task, two thresholding segmentation techniques are applied to separate the alien from the background using the previously normalized image. First, the image is converted to grayscale and the global Otsu method is applied; this automatically calculates the optimal overall intensity threshold to create a binary mask. Second, Adaptive Thresholding (Gaussian) is applied, analyzing illumination in small image blocks to recover details in areas with local shadows. Finally, the program uses these masks to "cut out" and extract the original alien using the `cv2.bitwise_and` function, saving both the black-and-white masks and the results with the background removed.
 
 ---
 
