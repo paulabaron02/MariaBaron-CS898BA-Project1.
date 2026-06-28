@@ -36,24 +36,62 @@ For this part of the task, two thresholding segmentation techniques are applied 
 
 ## Part 4: Classical & Optimization-Based Segmentation
 
-To handle the complex textures and shadows of the outdoor scene, move beyond simple pixel intensities. Use the fully normalized color image from Part 2 as the input for these methods:
+For optimization-based segmentation, first convert the image to HSV. According to the chapter "Machine Learning with OpenCV" in the book *Mastering OpenCV4 with Python*, "the k-means clustering algorithm is used for color quantization; in this process, each data element consists of three features corresponding to the B, G, and R values ​​of each pixel. Therefore, a key step is transforming the image into data" specifically by using `reshape` and `float32` to obtain a list of pixel coordinates for the algorithm to process. Next, a `for` loop tests three different values ​​of K (3, 4, and 5); in each iteration, K-Means automatically groups pixels with similar colors and replaces them with the group's average color (the centroid). Finally, the image is reconstructed to its original shape, converted back to BGR, and the three segmented results are saved so you can compare which K-value best separates the alien from its surroundings.
 
-1. **Color-Space Clustering (K-Means):**
-   * Convert the normalized color image to the HSV color space.
-   * Apply K-Means clustering to segment the image into $K$ distinct regions (test and select an optimal $K$ value between 3 and 5). 
-   * Isolate the cluster that most closely captures the "unknown figure."
+Based on the results, K=4 (shown below) was selected because the alien retains a uniform appearance, the grass has a distinct tone, and the houses also appear to belong to separate groups.
 
-*Save the resulting binary masks and the segmented foreground extractions for both methods.*
+<img width="2816" height="1536" alt="Part4_K4_Segmented" src="https://github.com/user-attachments/assets/ec58e864-b705-4625-b59a-436e1b03bcfc" />
+
+The code fixes K=4 as the optimal value, recalculates the groups, and independently generates four binary masks and four background extractions (one for each color cluster); however, it fails to completely isolate the distinct elements of the scene. 
+
+Among the results, the first option offers the best visualization—despite the issues—because the alien's full figure is more clearly visible, even though the houses in the background are still heavily emphasized.
+<img width="2816" height="1536" alt="Part4_Cluster_2_Mask" src="https://github.com/user-attachments/assets/c7741e45-7720-452a-b2e9-700fb48954a4" />
+
+The second option provides a good view of the alien but shows too much of the grass. Finally, I saved all the clusters into the "results 2" folder as individual image files
+
+<img width="2816" height="1536" alt="Part4_Cluster_0_Mask" src="https://github.com/user-attachments/assets/fb4b775a-b1ea-4545-849f-937cd637aeb1" />
 
 ---
 
 ## Part 5: Evaluation and Analysis
 
-You now have 3 distinct segmentation outputs (Otsu, Adaptive, and K-Means).
+## Part 5.1 Qualitative analysis
 
-1. **Qualitative Analysis:**
-   * Discuss the pros and cons of each approach regarding background noise (e.g., leaves, porch structures) and edge preservation of the central figure. Specifically note how color normalization across all three channels impacted the final segmentation compared to the raw image results from Homework One.
-2. **Quantitative Comparison (Pseudo-Ground Truth):**
+1. Otsu's global thresholding
+
+Advantages: It is simpler; it separates bright foreground regions from the darker background and produces a clean mask with defined edges in high-contrast areas.
+
+Disadvantages: Several background regions (houses, lights, and grass) are incorrectly classified as foreground; parts of the figure are lost due to shadows and variations in luminosity.
+
+2. Adaptive thresholding
+
+Advantages: It handles local lighting changes better than Otsu's method, preserves more details of the unknown figure, and detects body contours even in the darkest areas of the image.
+
+Disadvantages: It generates significant background noise; grass texture and small objects are treated as foreground pixels.
+
+3. K-Means clustering (HSV, K = 4)
+
+Advantages: It uses color information instead of relying solely on pixel intensity.
+Cluster 2 captures the majority of the unknown figure and reduces background interference.
+
+Disadvantages
+
+Some background regions remain within the selected cluster, Noise persists because the original image exhibits considerable grain in low-light conditions.
+
+Effect of multi-channel normalization
+
+Applying histogram equalization independently to the R, G, and B channels significantly improved the overall image contrast prior to segmentation.
+
+Compared to the original image from the first task:
+
+- The figure became more distinguishable from the background.
+- Dark areas gained detail.
+- Color differences were accentuated, allowing the K-Means method to generate more meaningful clusters.
+- Thresholding methods detected more object edges and contours. However, equalization also amplified image noise, making adaptive thresholding particularly sensitive to grass texture and background details.
+
+Overall, multi-channel normalization improved segmentation performance, particularly for the color-based K-Means approach.
+
+5.2. **Quantitative Comparison (Pseudo-Ground Truth):**
    * Manually create or define a clean reference mask of the "figure" to serve as your ground truth.
    * Calculate and print the **Intersection over Union (IoU) / Jaccard Index** and the **Dice Coefficient** for each of the 3 segmentation methods against your reference mask.
 
