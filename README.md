@@ -95,7 +95,7 @@ Overall, multi-channel normalization improved segmentation performance, particul
 
 To begin, I load a reference mask that I created manually using editing software; in this mask, the figure to be isolated the alien is white, while the background is black. This serves as the ideal "ground truth," allowing the precision of the methods to be calculated using two mathematical metrics: IoU (which measures mask overlap or intersection) and Dice (which measures overall similarity). The program organizes these values ​​into a table and saves it as an image. Finally, it generates a visual grid using Matplotlib that displays the original image, the normalized image, the ideal reference mask, and the three black-and-white segmentation results.
 
-     Otsu produced the highest IoU and Dice score, meaning it had the greatest overlap with the manually created reference mask. However, all three methods produced relatively low scores because the outdoor scene contains uneven lighting, shadows, grass texture, and bright background structures. These factors caused the segmentation methods to include background pixels or miss parts of the central figure.
+Otsu produced the highest IoU and Dice score, meaning it had the greatest overlap with the manually created reference mask. However, all three methods produced relatively low scores because the outdoor scene contains uneven lighting, shadows, grass texture, and bright background structures. These factors caused the segmentation methods to include background pixels or miss parts of the central figure.
 
 <img width="1777" height="718" alt="Part5_Quantitative_Comparison_Table" src="https://github.com/user-attachments/assets/3729d8d7-019c-4844-bf71-c7215cf532c6" />
 
