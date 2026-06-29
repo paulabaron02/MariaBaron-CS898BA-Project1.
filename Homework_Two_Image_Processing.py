@@ -8,7 +8,7 @@ print(sys.executable)
 
 import cv2
 import matplotlib.pyplot as plt
-#import pandas as pd
+import pandas as pd
 import numpy as np
 import os
 #import scipy.stats as sp
@@ -70,7 +70,7 @@ print("2.5 Complete")
 # 3.1. Otsu’s Global Thresholding:
 # Convert your normalized color image to grayscale.
 
-Image_Gray_Normalized = cv2.cvtColor(Image_BRG_EQ, cv2.COLOR_RGB2GRAY)
+Image_Gray_Normalized = cv2.cvtColor(Image_BRG_EQ, cv2.COLOR_BGR2GRAY)
 
 # Apply Otsu's automatic thresholding to separate the foreground object from the background.
 
@@ -149,6 +149,95 @@ for cluster in range(K4):
 
 print("4.1 Complete Clusters")
 
+# %% Part 5
+# 5.2. Quantitative Comparison (Pseudo-Ground Truth):
+
+# Manually create or define a clean reference mask of the "figure" to serve as your ground truth.
+Reference_Mask = cv2.imread(os.path.join(r"C:\Users\Paula\.spyder-py3\MariaBaron-CS898BA-Project1\MariaBaron-CS898BA-Project1\Reference_Mask.png"),cv2.IMREAD_GRAYSCALE)
+
+# Calculate and print the Intersection over Union (IoU) / Jaccard Index and the Dice Coefficient for each of the 3 segmentation methods against your reference mask.
+
+Otsu_Mask = cv2.imread(os.path.join(Results_2, "Part3_Results_HW2_Otsu_Mask.png"),cv2.IMREAD_GRAYSCALE)
+Adaptive_Mask = cv2.imread(os.path.join(Results_2, "Part3_Results_HW2_Adaptive_Mask.png"),cv2.IMREAD_GRAYSCALE)
+KMeans_Mask = cv2.imread(os.path.join(Results_2, "Part4_Cluster_2_Mask.png"),cv2.IMREAD_GRAYSCALE)
+
+Reference_Binary = Reference_Mask > 127
+Otsu_Binary = Otsu_Mask < 127
+Adaptive_Binary = Adaptive_Mask > 127
+KMeans_Binary = KMeans_Mask < 127
+
+def calculate_iou_dice(reference, prediction):
+    intersection = np.logical_and(reference, prediction).sum()
+    union = np.logical_or(reference, prediction).sum()
+
+    iou = intersection / union if union != 0 else 0
+
+    dice = (2 * intersection) / (reference.sum() + prediction.sum()) \
+        if (reference.sum() + prediction.sum()) != 0 else 0
+    return iou, dice
+
+results = []
+for method_name, mask in [
+    ("Otsu", Otsu_Binary),("Adaptive", Adaptive_Binary),("K-Means", KMeans_Binary)]:
+    iou, dice = calculate_iou_dice(Reference_Binary, mask)
+    results.append({"Method": method_name,"IoU / Jaccard Index": iou,"Dice Coefficient": dice})
+    
+Results_Table = pd.DataFrame(results)
+fig, ax = plt.subplots(figsize=(6,2.5))
+table = ax.table(cellText=Results_Table.values,colLabels=Results_Table.columns,cellLoc='center',loc='center')
+table.scale(1.2, 1.5)
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+ax.axis('off')
+ax.set_title("Part 5.2 Quantitative Comparison")
+plt.tight_layout()
+plt.savefig(os.path.join(Results_2, "Part5_Quantitative_Comparison_Table.png"),dpi=300,bbox_inches="tight")
+plt.show()
+
+print("5.2 Table Intersection over Union (IoU) / Jaccard Index Complete")
+
+# 5.3. Visualization:
+# Create a multi-image comparison plot displaying the original image, the multi-channel normalized color image, and the 4 final segmented masks side-by-side. Include this plot in your updated README.md.
+
+Original_RGB = cv2.cvtColor(Image_Alien, cv2.COLOR_BGR2RGB)
+Normalized_RGB = cv2.cvtColor(Image_BRG_EQ, cv2.COLOR_BGR2RGB)
+
+fig = plt.figure(figsize=(15,8))
+fig.suptitle("Part 5 - Segmentation Comparison", fontsize=16)
+
+ax1 = fig.add_subplot(2,3,1)
+ax1.imshow(Original_RGB)
+ax1.set_title("Original Image")
+ax1.axis("off")
+
+ax2 = fig.add_subplot(2,3,2)
+ax2.imshow(Normalized_RGB)
+ax2.set_title("Normalized Image")
+ax2.axis("off")
+
+ax3 = fig.add_subplot(2,3,3)
+ax3.imshow(Reference_Binary, cmap="gray")
+ax3.set_title("Reference Mask")
+ax3.axis("off")
+
+ax4 = fig.add_subplot(2,3,4)
+ax4.imshow(Otsu_Binary, cmap="gray")
+ax4.set_title("Otsu")
+ax4.axis("off")
+
+ax5 = fig.add_subplot(2,3,5)
+ax5.imshow(Adaptive_Binary, cmap="gray")
+ax5.set_title("Adaptive")
+ax5.axis("off")
+
+ax6 = fig.add_subplot(2,3,6)
+ax6.imshow(KMeans_Binary, cmap="gray")
+ax6.set_title("K-Means")
+ax6.axis("off")
+
+plt.tight_layout()
+plt.savefig(os.path.join(Results_2, "Part5_Visualization_Comparison.png"),dpi=300,bbox_inches="tight")
+plt.show()
 
 
 
