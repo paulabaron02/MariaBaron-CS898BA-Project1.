@@ -97,9 +97,11 @@ To begin, I load a reference mask that I created manually using editing software
 
 <img width="1777" height="718" alt="Part5_Quantitative_Comparison_Table" src="https://github.com/user-attachments/assets/3729d8d7-019c-4844-bf71-c7215cf532c6" />
 
-     Otsu produced the highest IoU and Dice score, meaning it had the greatest overlap with the manually created reference mask. However, all three methods produced relatively low scores because the outdoor scene contains uneven lighting, shadows, grass texture, and bright background structures. These factors caused the segmentation methods to include background pixels or miss parts of the central figure.
 
-3. **Visualization:**
+     Otsu produced the highest IoU and Dice score, meaning it had the greatest overlap with the manually created reference mask. However, all three methods produced relatively low scores because the outdoor scene contains uneven lighting, shadows, grass texture, and bright background structures. These factors caused the segmentation methods to include background pixels or miss parts of the central figure.
+     
+
+5.3. **Visualization:**
    * Create a multi-image comparison plot displaying the original image, the multi-channel normalized color image, and the 4 final segmented masks side-by-side. Include this plot in your updated `README.md`.
 
 <img width="4470" height="2166" alt="Part5_Visualization_Comparison" src="https://github.com/user-attachments/assets/ee3319b4-f5fc-4ffd-adb0-3ce2e302208a" />
